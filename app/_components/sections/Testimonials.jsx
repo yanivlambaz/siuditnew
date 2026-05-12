@@ -45,8 +45,8 @@ export default function Testimonials() {
       <Container size="wide">
         <SectionHeading
           eyebrow="קול משפחות"
-          title="מה שחוזר בשיחות — לא בקמפיין"
-          subtitle="ציטוטים מקוצרים ואנונימיים, עם דגש על רגשות אמיתיים ועל הגבולות המקצועיים. בלי צילומי סטוק של מטופלים מחייכים."
+          title="תראו איזה מחמאות נתנו לנו"
+          subtitle="ציטוטים של לקוחות מאומתים, רק דגימה קטנה מתוך מאות."
         />
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 lg:mt-14">

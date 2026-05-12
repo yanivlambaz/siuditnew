@@ -47,12 +47,12 @@ export default function Hero({ whatsappHref, telHref }) {
               <span className="font-extrabold text-[#1851d8]">מענה מהיר בכל הארץ</span>
             </p>
 
-            <h1 className="animate-rise-2 mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-tight text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
-              אחות פרטית עד הבית{" "}
-              <span className="bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text text-transparent">
-                תוך שעות
+            <h1 className="animate-rise-2 mt-6 max-w-full text-balance text-[2rem] font-extrabold leading-[1.12] tracking-tight text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
+              אחות פרטית עד הבית תוך שעות
+              {" - "}
+              <span className="bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text font-black text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                זמינות מיידית <span className="whitespace-nowrap">24/7</span>
               </span>
-              <span className="text-[#0a1f44]"> — זמינות מיידית בכל הארץ</span>
             </h1>
 
             <p className="animate-rise-3 mt-6 max-w-xl text-pretty text-[16px] leading-[1.72] text-slate-600 sm:text-[17.5px] sm:leading-[1.75]">

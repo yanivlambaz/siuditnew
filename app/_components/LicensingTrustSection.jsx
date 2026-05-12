@@ -24,7 +24,7 @@ export default function LicensingTrustSection({ compact = false }) {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1851d8]/90">רישוי · שקיפות · גבולות מקצועיים</p>
           <h2 className="mt-3 text-balance text-[22px] font-extrabold tracking-tight text-[#0a1f44] sm:text-[28px]">
-            סמכות קלינית — בלי סלוגנים חלולים
+            סמכות קלינית בליווי מקצועי שוטף
           </h2>
           <p className="mt-4 text-pretty text-[15px] leading-[1.75] text-slate-600">
             השיבוץ נעשה לאחר בדיקת רישיון אחות בתוקף מול משרד הבריאות, התאמת ניסיון למצב הטיפולי, ותיעוד מה נכלל במסגרת ההוראה הרפואית.

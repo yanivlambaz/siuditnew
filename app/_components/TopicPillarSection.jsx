@@ -10,7 +10,7 @@ export default function TopicPillarSection() {
       <Container size="wide">
         <SectionHeading
           eyebrow="מפת תוכן וסמכות נושאית"
-          title="ארבעה צירים — קלאסטרים של שירותים ומדריכים"
+          title="שירותים ומדריכים"
           subtitle="כל ציר מרכז קישורים פנימיים לדפי שירות ולבלוג — כדי לחזק עומק נושאי ולמצוא מהר את הצעד הבא."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
