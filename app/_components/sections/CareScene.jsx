@@ -9,6 +9,10 @@ import { CareMomentScene } from "../illustrations/Scenes";
 
 const easing = [0.22, 1, 0.36, 1];
 
+/** תמונת Unsplash נפרדת מה־Hero — אחות/אישה מקצועית בסיעוד */
+const CARE_SCENE_IMAGE =
+  "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=1400&q=80";
+
 const PROOF = [
   { icon: HeartPulse, value: "ניטור מובנה", label: "תצפית ודיווח כשמשתנה מצב" },
   { icon: ShieldCheck, value: "גבולות ברורים", label: "לפי הוראה רפואית — בלי קיצורי דרך" },
@@ -41,11 +45,11 @@ export default function CareScene() {
                 </div>
 
                 <Image
-                  src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=1400&q=80"
-                  alt="טיפול סיעודי בבית — ליווי קרוב ושקט למשפחה"
+                  src={CARE_SCENE_IMAGE}
+                  alt="אחות מוסמכת במעיל לבן וסטטוסקופ — טיפול סיעודי מקצועי בבית"
                   fill
                   sizes="(min-width: 1024px) 720px, 100vw"
-                  className="relative z-10 object-cover"
+                  className="relative z-10 object-cover object-[center_22%]"
                 />
 
                 <div className="absolute inset-0 z-20 bg-gradient-to-tr from-[#04122e]/25 via-transparent to-[#1f6bff]/10" />

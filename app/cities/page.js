@@ -178,7 +178,7 @@ export default function CitiesIndexPage() {
               <div>
                 <p className="text-[12.5px] font-bold uppercase tracking-wider text-[#1f6bff]">ערים מובילות</p>
                 <h2 id="featured-cities-heading" className="mt-2 text-2xl font-black text-[#0a1f44] sm:text-3xl">
-                  דפי נחיתה מלאים בערים שבהן הכי צריך עוצמה טיפולית
+                  עוצמה טיפולית בפריסה ארצית
                 </h2>
               </div>
               <Link
