@@ -1,0 +1,30 @@
+{
+  "name": "siudit",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
+    "dev": "next dev --hostname 127.0.0.1",
+    "dev:fresh": "npm run clean && next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "build:fresh": "npm run clean && next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.14.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "@tailwindcss/postcss": "^4.2.4",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4"
+  }
+}
