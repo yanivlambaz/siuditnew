@@ -4,6 +4,7 @@ import WhatsAppFab from "./_components/WhatsAppFab";
 import ScrollProgress from "./_components/ScrollProgress";
 import MobileStickyCTA from "./_components/MobileStickyCTA";
 import DeferredClientEngagement from "./_components/DeferredClientEngagement";
+import CookieBanner from "./_components/CookieBanner";
 import Hero from "./_components/sections/Hero";
 import TrustStrip from "./_components/sections/TrustStrip";
 import ServicesBento from "./_components/sections/ServicesBento";
@@ -74,6 +75,7 @@ export default function HomePage() {
       <WhatsAppFab href={whatsappHref} />
       <DeferredClientEngagement whatsappHref={whatsappHref} siteMode="home" />
       <MobileStickyCTA whatsappHref={whatsappHref} />
+      <CookieBanner />
     </div>
   );
 }
