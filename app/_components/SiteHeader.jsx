@@ -52,34 +52,44 @@ export default function SiteHeader() {
           : "bg-white/40 backdrop-blur-md",
       ].join(" ")}
     >
-      <Container size="wide" className="flex h-[72px] items-center justify-between gap-4">
+      <div
+        className={[
+          "mx-auto flex h-[72px] w-full min-w-0 max-w-7xl items-center justify-between gap-3 sm:gap-4",
+          "px-5 sm:px-8",
+          "lg:max-w-none lg:grid lg:w-full lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-6 xl:gap-8 2xl:gap-10 min-[1920px]:gap-12",
+          "lg:px-10 xl:px-14 2xl:px-16 min-[1920px]:px-20",
+        ].join(" ")}
+      >
         <Link
           href="/"
           aria-label="לעמוד הבית"
-          className="shrink min-w-0 transition hover:opacity-90"
+          className="min-w-0 shrink transition hover:opacity-90 lg:shrink-0"
         >
           <BrandLockup theme="light" />
         </Link>
 
         <nav
-          className="hidden items-center gap-8 text-[14px] font-semibold text-slate-600 lg:flex"
+          className="hidden min-w-0 justify-self-stretch lg:flex lg:items-center lg:justify-center"
           aria-label="ניווט ראשי"
         >
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="relative transition hover:text-[#0a1f44] after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-right after:scale-x-0 after:bg-[#0a1f44] after:transition-transform after:duration-300 hover:after:scale-x-100"
-            >
-              {l.label}
-            </Link>
-          ))}
+          <ul className="m-0 flex max-w-full list-none flex-wrap items-center justify-center gap-x-6 gap-y-2 p-0 text-[14px] font-semibold text-slate-600 xl:gap-x-7 2xl:flex-nowrap 2xl:gap-x-9 min-[1920px]:gap-x-10">
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="relative inline-flex transition hover:text-[#0a1f44] after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-right after:scale-x-0 after:bg-[#0a1f44] after:transition-transform after:duration-300 hover:after:scale-x-100"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-2.5 lg:gap-3 2xl:gap-3.5">
           <a
             href={buildTelHrefClient()}
-            className="hidden min-w-0 items-center gap-2 rounded-full px-3 py-2 text-[13px] font-bold text-[#0a1f44] ring-1 ring-slate-200/90 transition hover:bg-slate-50 md:inline-flex"
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-bold text-[#0a1f44] ring-1 ring-slate-200/90 transition hover:bg-slate-50 md:inline-flex md:px-3.5 xl:px-4"
           >
             <Phone className="h-4 w-4 shrink-0 text-[#1f6bff]" strokeWidth={2.4} />
             <span className="tabular-nums tracking-tight">{orgPhoneDisplayIl()}</span>
@@ -88,12 +98,12 @@ export default function SiteHeader() {
             href={buildWhatsappHrefClient()}
             target="_blank"
             rel="noreferrer"
-            className="hidden h-11 items-center gap-2 rounded-full bg-emerald-50 px-3.5 text-[13px] font-bold text-emerald-900 ring-1 ring-emerald-200/90 transition hover:bg-emerald-100/90 lg:inline-flex"
+            className="hidden h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-emerald-50 px-3.5 text-[13px] font-bold text-emerald-900 ring-1 ring-emerald-200/90 transition hover:bg-emerald-100/90 lg:inline-flex xl:px-4"
           >
             <MessageCircle className="h-4 w-4 shrink-0 text-[#128C7E]" strokeWidth={2.3} />
             WhatsApp מיידי
           </a>
-          <Button as="a" href="/#contact" variant="primary" size="sm" className="hidden sm:inline-flex">
+          <Button as="a" href="/#contact" variant="primary" size="sm" className="hidden shrink-0 sm:inline-flex">
             דברו איתנו
           </Button>
           <button
@@ -101,12 +111,12 @@ export default function SiteHeader() {
             aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white/80 text-[#0a1f44] transition hover:bg-white lg:hidden"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-200 bg-white/80 text-[#0a1f44] transition hover:bg-white lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-      </Container>
+      </div>
 
       <div
         className={[

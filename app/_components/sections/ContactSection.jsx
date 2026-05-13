@@ -80,7 +80,7 @@ export default function ContactSection({ defaultCity = "" }) {
                   </p>
 
                   <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-                    <Button as="a" href={telHref} variant="primary" size="md" className="w-full bg-white text-[#0a1f44] shadow-none hover:bg-slate-100 sm:w-auto">
+                    <Button as="a" href={telHref} variant="secondary" size="md" className="w-full sm:w-auto">
                       <Phone className="h-4 w-4 text-[#1f6bff]" strokeWidth={2.4} />
                       חייגו עכשיו · {ORG_PHONE_DISPLAY}
                     </Button>

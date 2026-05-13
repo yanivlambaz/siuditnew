@@ -40,8 +40,8 @@ export default function ServicesIndexPage() {
             className="mt-10"
             align="start"
             eyebrow="מחוזות טיפול"
-            title="שירותי אחות פרטית — תוכן ארוך, FAQ וטופס המרות"
-            subtitle="כל שירות נפתח בדף ייעודי עם מבנה SEO מלא, קישורים פנימיים לבלוג ולערים, וקריאה לפעולה ברורה."
+            title="שירותי אחיות במגוון רחב מותאים לצורכי הלקוח"
+            subtitle="פנו אלינו להתאמה אישית של הטיפול ולהתאמת אח/אחות בהתמחות הדרושה לכם"
           />
 
           <ul className="mt-14 grid gap-4 md:grid-cols-2">
