@@ -47,11 +47,14 @@ export default function Hero({ whatsappHref, telHref }) {
               <span className="font-extrabold text-[#1851d8]">מענה מהיר בכל הארץ</span>
             </p>
 
-            <h1 className="animate-rise-2 mt-6 max-w-full text-balance text-[2rem] font-extrabold leading-[1.12] tracking-tight text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
-              אחות פרטית עד הבית תוך שעות
-              {" - "}
-              <span className="bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text font-black text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
-                זמינות מיידית <span className="whitespace-nowrap">24/7</span>
+            <h1 className="animate-rise-2 mt-6 max-w-full text-balance leading-[1.12] tracking-tight">
+              <span className="block text-[2rem] font-extrabold text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
+                אחות פרטית עד הבית או לבית החולים
+              </span>
+              <span className="mt-2 block text-[1.2rem] font-extrabold leading-tight sm:text-[1.45rem] lg:text-[1.55rem] xl:text-[1.7rem]">
+                <span className="bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text font-black text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                  בזמינות מיידית <span className="whitespace-nowrap">24/7</span>
+                </span>
               </span>
             </h1>
 
