@@ -16,6 +16,9 @@ export const metadata = {
   description:
     "אחיות מוסמכות משרד הבריאות לליווי בבית ובבית חולים: ניטור, ניהול תרופות לפי הוראה, המשכיות אחרי שחרור ושקט למשפחה. מענה מהיר ופריסה ארצית.",
   metadataBase: new URL("https://siudit.co.il"),
+  verification: {
+    google: "Nyo7xi4uWrKpm2tUF26bCt-WphJ_0-OvMCwiio9sHwY",
+  },
 };
 
 export const viewport = {
