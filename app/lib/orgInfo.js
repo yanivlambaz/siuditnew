@@ -20,7 +20,7 @@ export const ORG_PHONE_DIGITS = "0723940350";
 export const ORG_PHONE_E164 = "+972723940350";
 
 /** קישור וואטסאפ קנוני (ניתן לעקוף ב־NEXT_PUBLIC_WHATSAPP_HREF / NEXT_PUBLIC_WHATSAPP_PHONE) */
-export const ORG_WHATSAPP_HREF = "https://wa.me/972559665055";
+export const ORG_WHATSAPP_HREF = "https://wa.me/972533671855";
 
 /** רישיון לשכה פרטית (השמה) — משרד העבודה */
 export const ORG_PLACEMENT_LICENSE_NO = "3203";
