@@ -61,6 +61,10 @@ export async function POST(request) {
   const message = optionalField(body, "message");
   const page = optionalField(body, "page");
   const service = optionalField(body, "service");
+  // Optional structured intake fields (used by the nurse matching flow).
+  // Additive and backward compatible: existing forms simply omit them.
+  const careLocation = optionalField(body, "careLocation");
+  const urgency = optionalField(body, "urgency");
 
   const validatedLeadPayload = {
     name,
@@ -72,6 +76,8 @@ export async function POST(request) {
     ...(message ? { message } : {}),
     ...(page ? { page } : {}),
     ...(service ? { service } : {}),
+    ...(careLocation ? { careLocation } : {}),
+    ...(urgency ? { urgency } : {}),
     timestamp: new Date().toISOString(),
   };
 

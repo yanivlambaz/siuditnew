@@ -6,7 +6,10 @@ import MobileStickyCTA from "./_components/MobileStickyCTA";
 import DeferredClientEngagement from "./_components/DeferredClientEngagement";
 import Hero from "./_components/sections/Hero";
 import TrustStrip from "./_components/sections/TrustStrip";
+import NurseMatchingFlow from "./_components/matching/NurseMatchingFlow";
+import Reimbursement from "./_components/sections/Reimbursement";
 import ServicesBento from "./_components/sections/ServicesBento";
+import HomeVsHospital from "./_components/sections/HomeVsHospital";
 import CareScene from "./_components/sections/CareScene";
 import ProcessTimeline from "./_components/sections/ProcessTimeline";
 import WhyUs from "./_components/sections/WhyUs";
@@ -24,7 +27,7 @@ import { orgTelHref } from "./lib/orgPhone";
 import { serializeJsonLd } from "./lib/serializeJsonLd";
 
 export const metadata = {
-  title: "סיעוד פרימיום · אחות פרטית לבית ולבית חולים | זמינות 24/7",
+  title: "סיעודית · שירות אחיות 24/7 | אחות פרטית לבית ולבית חולים",
   description:
     "אחיות מוסמכות משרד הבריאות לליווי בבית ובבית חולים: ניטור, ניהול תרופות לפי הוראה, המשכיות אחרי שחרור ושקט למשפחה. מענה מהיר ופריסה ארצית.",
   alternates: canonicalPath("/"),
@@ -32,7 +35,7 @@ export const metadata = {
     type: "website",
     locale: "he_IL",
     url: absoluteUrl("/"),
-    title: "סיעוד פרימיום · אחות פרטית בישראל",
+    title: "סיעודית · שירות אחיות 24/7",
     description:
       "ליווי קליני מקצועי בבית ובבית חולים, דפי עיר ומדריכים — עם דגש על רישוי, ניסיון ותיאום מהיר.",
   },
@@ -54,26 +57,35 @@ export default function HomePage() {
       <SiteHeader />
 
       <main id="top">
+        {/* Conversion-first hierarchy */}
         <Hero whatsappHref={whatsappHref} telHref={orgTelHref()} />
         <TrustStrip />
-        <MedicalTrustBlock />
-        <LicensingTrustSection compact />
+        <NurseMatchingFlow />
         <ServicesBento />
-        <CareScene />
         <ProcessTimeline />
         <WhyUs />
-        <TopicPillarSection />
+        <HomeVsHospital />
+        <CareScene
+          imageSrc="/images/siudit-bedside-nurse-care.png"
+          imageAlt="אחות מוסמכת מלווה קשיש מרותק למיטה בבית — קרבה אנושית ותיעוד רפואי"
+        />
         <Testimonials />
+        <Reimbursement />
         <ContactSection />
         <Faq />
         <FinalCTA />
+
+        {/* SEO content layer — kept below the primary conversion experience */}
+        <MedicalTrustBlock />
+        <LicensingTrustSection compact />
+        <TopicPillarSection />
       </main>
 
       <SiteFooter />
 
       <WhatsAppFab href={whatsappHref} />
       <DeferredClientEngagement whatsappHref={whatsappHref} siteMode="home" />
-      <MobileStickyCTA whatsappHref={whatsappHref} />
+      <MobileStickyCTA whatsappHref={whatsappHref} availabilityHref="#matching" />
     </div>
   );
 }

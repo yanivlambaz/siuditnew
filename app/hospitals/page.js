@@ -10,7 +10,7 @@ import { absoluteUrl, canonicalPath } from "../lib/seo";
 import { publicWhatsappHref } from "../lib/contactUrls";
 
 export const metadata = {
-  title: "בתי חולים — אחות פרטית ליד מרכזים רפואיים בישראל | סיעוד פרימיום",
+  title: "בתי חולים — אחות פרטית ליד מרכזים רפואיים בישראל | סיעודית",
   description:
     "דפי נחיתה לפי בתי חולים מרכזיים: ליווי מוסמך במחלקה, המשכיות אחרי שחרור ותיאום ארצי. בחרו בית חולים וקבלו מידע ממוקד.",
   alternates: canonicalPath("/hospitals"),

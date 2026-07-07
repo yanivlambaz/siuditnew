@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { HeartPulse, ShieldCheck, Sparkles, Activity, ArrowLeft } from "lucide-react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
-import { CareMomentScene } from "../illustrations/Scenes";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -19,7 +18,10 @@ const PROOF = [
   { icon: Sparkles, value: "תוכנית אישית", label: "מתאימים לבית, לא לתבנית קבועה מראש" },
 ];
 
-export default function CareScene() {
+export default function CareScene({
+  imageSrc = CARE_SCENE_IMAGE,
+  imageAlt = "אחות מוסמכת במעיל לבן וסטטוסקופ — טיפול סיעודי מקצועי בבית",
+}) {
   return (
     <section className="relative scroll-mt-nav overflow-hidden py-20 sm:py-[5.5rem] md:py-[6.75rem]">
       <div
@@ -40,13 +42,9 @@ export default function CareScene() {
               <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-[#1f6bff]/15 via-[#5fd1f0]/15 to-transparent blur-3xl" />
 
               <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] ring-1 ring-slate-200/60 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.25)]">
-                <div className="absolute inset-0">
-                  <CareMomentScene />
-                </div>
-
                 <Image
-                  src={CARE_SCENE_IMAGE}
-                  alt="אחות מוסמכת במעיל לבן וסטטוסקופ — טיפול סיעודי מקצועי בבית"
+                  src={imageSrc}
+                  alt={imageAlt}
                   fill
                   sizes="(min-width: 1024px) 720px, 100vw"
                   className="relative z-10 object-cover object-[center_22%]"
@@ -87,25 +85,6 @@ export default function CareScene() {
                   </div>
                 </motion.div>
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.8, ease: easing, delay: 0.6 }}
-                className="absolute -bottom-10 -end-4 hidden w-[260px] rounded-3xl bg-white p-5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.25)] ring-1 ring-slate-200/70 sm:block"
-              >
-                <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#1851d8]">
-                  <Sparkles className="h-3.5 w-3.5" strokeWidth={2.4} />
-                  ניטור חי
-                </div>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  <Vital label="דופק" value="72" unit="bpm" trend="+2" tone="ok" />
-                  <Vital label="חמצן" value="98" unit="%" trend="0" tone="ok" />
-                  <Vital label="לחץ דם" value="118/76" unit="" trend="" tone="ok" />
-                  <Vital label="טמפ׳" value="36.6" unit="°C" trend="" tone="ok" />
-                </div>
-              </motion.div>
             </motion.div>
           </div>
 
@@ -141,7 +120,7 @@ export default function CareScene() {
               className="mt-5 text-pretty text-[17px] leading-[1.7] text-slate-600"
             >
               האחיות שלנו לא רק מבצעות פרוטוקולים — הן מקשיבות, מסבירות,
-              ומלוות את כל המשפחה. ככה נראה שירות סיעוד פרימיום בבית.
+              ומלוות את כל המשפחה. ככה נראה שירות אחיות בבית.
             </motion.p>
 
             <ul className="mt-9 space-y-4">
@@ -185,31 +164,5 @@ export default function CareScene() {
         </div>
       </Container>
     </section>
-  );
-}
-
-function Vital({ label, value, unit, trend, tone }) {
-  return (
-    <div className="rounded-xl bg-[#f7f9fc] p-3 ring-1 ring-slate-100">
-      <div className="flex items-center justify-between">
-        <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500">
-          {label}
-        </span>
-        {trend ? (
-          <span
-            className={[
-              "text-[10px] font-bold",
-              tone === "ok" ? "text-emerald-600" : "text-rose-600",
-            ].join(" ")}
-          >
-            {trend}
-          </span>
-        ) : null}
-      </div>
-      <div className="mt-1 flex items-baseline gap-1">
-        <span className="text-[15px] font-extrabold text-[#0a1f44]">{value}</span>
-        {unit ? <span className="text-[10.5px] font-bold text-slate-500">{unit}</span> : null}
-      </div>
-    </div>
   );
 }

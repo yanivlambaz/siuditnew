@@ -15,7 +15,7 @@ import { absoluteUrl, canonicalPath } from "../lib/seo";
 import { publicWhatsappHref } from "../lib/contactUrls";
 
 export const metadata = {
-  title: "הצוות המקצועי · תהליכי שיבוץ ובקרה | סיעוד פרימיום",
+  title: "הצוות המקצועי · תהליכי שיבוץ ובקרה | סיעודית",
   description:
     "איך מנוהל שיבוץ אחיות מוסמכות, איזה בקרות רישוי ותיעוד יש לפני כל התאמה, ואיך נשמרת שפה אנושית מול משפחות ומטופלים.",
   alternates: canonicalPath("/team"),

@@ -139,7 +139,7 @@ export default function SiteFooter() {
         <div className="mt-8 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 text-[13px] text-slate-400 sm:flex-row sm:items-center">
           <div className="max-w-2xl space-y-2">
             <span suppressHydrationWarning>
-              © {new Date().getFullYear()} סיעוד פרימיום · {ORG_LEGAL_NAME} · שירותי אחות פרטית בישראל. כל הזכויות שמורות.
+              © {new Date().getFullYear()} סיעודית · {ORG_LEGAL_NAME} · שירותי אחות פרטית בישראל. כל הזכויות שמורות.
             </span>
             <p className="text-[12.5px] leading-relaxed text-slate-500">
               רישיון לשכה פרטית (השמה) ממשרד העבודה · מס׳ {ORG_PLACEMENT_LICENSE_NO}.{" "}

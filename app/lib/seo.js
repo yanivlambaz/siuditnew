@@ -26,7 +26,7 @@ function normalizePublicSiteUrl(raw) {
 
 const DEFAULT_SITE = normalizePublicSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
-const ORG_NAME = "סיעוד פרימיום — אחות פרטית בישראל";
+const ORG_NAME = "סיעודית — שירות אחיות 24/7";
 
 export function getSiteUrl() {
   return DEFAULT_SITE;
@@ -80,7 +80,7 @@ export function primarySiteGraphJsonLd() {
       "@type": "WebSite",
       "@id": websiteId,
       url: base,
-      name: "סיעוד פרימיום",
+      name: "סיעודית",
       inLanguage: "he-IL",
       publisher: { "@id": orgId },
       ...(email
@@ -100,7 +100,7 @@ export function primarySiteGraphJsonLd() {
       url: base,
       description:
         "אחיות מוסמכות משרד הבריאות לליווי בבית ובית חולים, המשכיות אחרי שחרור וניהול טיפול לפי הוראה רפואית. שירות ארצי בישראל.",
-      image: `${base}/favicon.ico`,
+      image: `${base}/images/siudit-logo.png`,
       priceRange: "$$",
       ...(phone ? { telephone: phoneE164 ?? phone } : {}),
       ...(email ? { email } : {}),
@@ -144,7 +144,7 @@ export function safePrimarySiteGraphJsonLdString() {
           "@type": "WebSite",
           "@id": `${FALLBACK_SITE}/#website`,
           url: FALLBACK_SITE,
-          name: "סיעוד פרימיום",
+          name: "סיעודית",
           inLanguage: "he-IL",
         },
       ],
@@ -165,7 +165,7 @@ export function organizationJsonLd(org = {}) {
     name: org.name ?? ORG_NAME,
     legalName: ORG_LEGAL_NAME,
     url: org.url ?? base,
-    logo: org.logo ?? `${base}/favicon.ico`,
+    logo: org.logo ?? `${base}/images/siudit-logo.png`,
     description:
       org.description ??
       "אחות פרטית לבית ולבית חולים בישראל. אחיות מוסמכות, זמינות לפי צורך, התאמה אישית.",
@@ -224,8 +224,8 @@ export function articleJsonLd({ title, description, urlPath, datePublished, date
     description,
     datePublished: datePublished ?? dateModified,
     dateModified: dateModified ?? datePublished,
-    author: { "@type": "Organization", name: "סיעוד פרימיום", "@id": `${base}/#organization` },
-    publisher: { "@type": "Organization", name: "סיעוד פרימיום", "@id": `${base}/#organization` },
+    author: { "@type": "Organization", name: "סיעודית", "@id": `${base}/#organization` },
+    publisher: { "@type": "Organization", name: "סיעודית", "@id": `${base}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(urlPath) },
   };
 }
@@ -236,7 +236,7 @@ export function localCityJsonLd(city) {
     "@context": "https://schema.org",
     "@type": ["MedicalClinic", "LocalBusiness"],
     "@id": `${absoluteUrl(`/cities/${city.slug}`)}#local`,
-    name: `סיעוד פרימיום — אחות פרטית ב${city.name}`,
+    name: `סיעודית — אחות פרטית ב${city.name}`,
     url: absoluteUrl(`/cities/${city.slug}`),
     parentOrganization: { "@id": `${base}/#organization` },
     medicalSpecialty: { "@type": "MedicalSpecialty", name: "Nursing" },
@@ -261,7 +261,7 @@ export function hospitalAreaServiceJsonLd(hospital, city) {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "@id": `${url}#service`,
-    name: `סיעוד פרימיום — ליווי אחות פרטית ליד ${hospital.shortName}`,
+    name: `סיעודית — ליווי אחות פרטית ליד ${hospital.shortName}`,
     url,
     parentOrganization: { "@id": `${base}/#organization` },
     description: `תיאום אחות פרטית מוסמכת לליווי בבית החולים ${hospital.shortName} וב${city.name}, והמשכיות טיפול בבית — לפי הוראה רפואית ובהתאם לצורך.`,
@@ -325,14 +325,14 @@ export function citiesNationwideHubGraphJsonLd() {
     {
       "@type": ["MedicalBusiness", "LocalBusiness"],
       "@id": `${hubUrl}#directory`,
-      name: "סיעוד פרימיום — אינדקס אחות פרטית בפריסה ארצית",
+      name: "סיעודית — אינדקס אחות פרטית בפריסה ארצית",
       legalName: ORG_LEGAL_NAME,
       url: hubUrl,
       description:
         "מרכז נחיתה ארצי לשירותי אחות פרטית בישראל: מיפוי ערים, בתי חולים מרכזיים, מעבר מהירה לייעוץ והתאמת אחות מוסמכת לפי אזור, שפה וצורך קליני — לבית ולבית חולים.",
       ...(phone ? { telephone: phone } : {}),
       ...(email ? { email } : {}),
-      image: `${base}/favicon.ico`,
+      image: `${base}/images/siudit-logo.png`,
       priceRange: "$$",
       address,
       parentOrganization: { "@id": orgId },

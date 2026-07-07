@@ -13,16 +13,16 @@ import {
 } from "lucide-react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
+import { track } from "../../lib/analytics";
 
-/** תמונת Unsplash — אישה מקצועית ברפואה (סטטוסקופ); הקישור הקודם החזיר 404 מ-imgix */
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1400&q=85";
+/** Official homepage hero photo — professional home nursing care. */
+const HERO_IMAGE = "/images/siudit-home-nursing-care.png";
 
 const TRUST_ITEMS = [
-  { icon: ShieldCheck, label: "אחיות מוסמכות בלבד" },
+  { icon: ShieldCheck, label: "אחים ואחיות מוסמכים" },
   { icon: Clock, label: "זמינות 24/7" },
-  { icon: MapPin, label: "פריסה ארצית" },
-  { icon: Sparkles, label: "התאמה מהירה למטופל" },
+  { icon: MapPin, label: "שירות בבית ובבית החולים" },
+  { icon: Sparkles, label: "התאמה אישית לצורך הרפואי" },
 ];
 
 /**
@@ -42,24 +42,25 @@ export default function Hero({ whatsappHref, telHref }) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              <span>סיעוד פרטי מוסמך</span>
+              <span>מענה אנושי 24/7</span>
               <span className="hidden text-slate-300 sm:inline">·</span>
-              <span className="font-extrabold text-[#1851d8]">מענה מהיר בכל הארץ</span>
+              <span className="font-extrabold text-[#1851d8]">התאמה אישית בכל הארץ</span>
             </p>
 
-            <h1 className="animate-rise-2 mt-6 max-w-full text-balance leading-[1.12] tracking-tight">
-              <span className="block text-[2rem] font-extrabold text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
-                אחות פרטית עד הבית או לבית החולים
-              </span>
-              <span className="mt-2 block text-[1.2rem] font-extrabold leading-tight sm:text-[1.45rem] lg:text-[1.55rem] xl:text-[1.7rem]">
-                <span className="bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text font-black text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
-                  בזמינות מיידית <span className="whitespace-nowrap">24/7</span>
-                </span>
+            <h1 className="animate-rise-2 mt-6 max-w-full text-balance text-[2rem] font-extrabold leading-[1.1] tracking-tight text-[#0a1f44] sm:text-[2.65rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.1rem]">
+              שירות אחיות עד הבית{" "}
+              <span className="whitespace-nowrap bg-gradient-to-l from-[#1f6bff] via-[#2563eb] to-[#0ea5e9] bg-clip-text font-black text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                24/7
               </span>
             </h1>
 
             <p className="animate-rise-3 mt-6 max-w-xl text-pretty text-[16px] leading-[1.72] text-slate-600 sm:text-[17.5px] sm:leading-[1.75]">
-              אחיות מוסמכות לטיפול ביתי, התאוששות לאחר ניתוח, השגחה רפואית וליווי אישי 24/7.
+              צריכים אח או אחות פרטיים בבית או בבית החולים? אנו מתאימים לכם איש מקצוע בהתאם למצב
+              הרפואי, למיקום ולזמן שבו אתם זקוקים לעזרה.
+            </p>
+
+            <p className="animate-rise-3 mt-4 text-[13.5px] font-bold text-[#0a1f44]/80 sm:text-[14.5px]">
+              מענה אנושי מהיר • התאמה אישית • שירות בפריסה ארצית
             </p>
 
             <ul className="animate-rise-3 mt-7 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
@@ -76,36 +77,45 @@ export default function Hero({ whatsappHref, telHref }) {
               ))}
             </ul>
 
-            <div className="animate-rise-4 mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button as="a" href={telHref} variant="gradient" size="lg" className="w-full min-h-[52px] sm:w-auto sm:min-w-[220px]">
-                <Phone className="h-5 w-5" strokeWidth={2.35} />
-                קבלו שיחה מיידית
-                <ArrowLeft className="h-5 w-5 transition-transform group-hover/btn:-translate-x-1" strokeWidth={2.2} />
-              </Button>
+            <div className="animate-rise-4 mt-9 flex flex-col gap-3">
               <Button
                 as="a"
-                href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                variant="whatsapp"
+                href="#matching"
+                variant="gradient"
                 size="lg"
-                className="w-full min-h-[52px] sm:w-auto sm:min-w-[200px]"
+                className="w-full min-h-[54px] sm:w-auto sm:min-w-[280px]"
+                onClick={() => track("hero_availability_click")}
               >
-                <MessageCircle className="h-5 w-5" strokeWidth={2.2} />
-                WhatsApp
+                בדיקת זמינות אחות באזורכם
+                <ArrowLeft className="h-5 w-5 transition-transform group-hover/btn:-translate-x-1" strokeWidth={2.2} />
               </Button>
-              <a
-                href="#contact"
-                className="text-center text-[13px] font-bold text-[#1f6bff] underline-offset-4 transition hover:underline sm:me-1 sm:mt-0 sm:text-start"
-              >
-                או השאירו פרטים — נחזור אליכם
-              </a>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                <Button
+                  as="a"
+                  href="#matching"
+                  variant="secondary"
+                  size="lg"
+                  className="w-full min-h-[52px] sm:w-auto"
+                  onClick={() => track("hero_personal_matching_click")}
+                >
+                  התאמת אחות למצב הרפואי
+                </Button>
+                <a
+                  href={telHref}
+                  onClick={() => track("phone_click", { location: "hero" })}
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-2 py-2 text-[14px] font-extrabold text-[#0a1f44] underline-offset-4 transition hover:text-[#1f6bff] hover:underline"
+                >
+                  <Phone className="h-[18px] w-[18px] text-[#1f6bff]" strokeWidth={2.4} />
+                  חייגו למענה אנושי 24/7
+                </a>
+              </div>
             </div>
 
-            <p className="animate-rise-5 mt-4 flex items-start gap-2 text-[12px] font-medium leading-relaxed text-slate-500 sm:text-[12.5px]">
+            <p className="animate-rise-5 mt-5 flex items-start gap-2 text-[12px] font-medium leading-relaxed text-slate-500 sm:text-[12.5px]">
               <HeartHandshake className="mt-0.5 h-4 w-4 shrink-0 text-[#1f6bff]/90" strokeWidth={2.2} aria-hidden />
               <span>
-                רישוי משרד הבריאות נבדק לפני שיבוץ · שקיפות מלאה · ללא התחייבות לפני שתבינו מה אתם מזמינים
+                אחים ואחיות מוסמכים · זמינות 24/7 · שירות בבית ובבית החולים · התאמה אישית לצורך הרפואי
               </span>
             </p>
           </div>
@@ -156,11 +166,11 @@ function HeroMediaPanel({ whatsappHref }) {
           <div className="relative aspect-[4/5] w-full min-h-[280px] sm:min-h-[360px] lg:min-h-[400px]">
             <Image
               src={HERO_IMAGE}
-              alt="צוות רפואי־סיעודי מקצועי עם סטטוסקופ — אווירה חמה"
+              alt="אחיות מוסמכות מלוות קשישה בבית — עירוי, קרבה אנושית ותיעוד רפואי"
               fill
               priority
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 42vw"
-              className="object-cover object-[center_20%]"
+              className="object-cover object-[center_35%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f44]/55 via-[#0a1f44]/10 to-transparent" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-white/15 via-transparent to-transparent" />

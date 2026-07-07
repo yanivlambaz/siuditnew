@@ -10,7 +10,7 @@ import { absoluteUrl, canonicalPath } from "../lib/seo";
 import { publicWhatsappHref } from "../lib/contactUrls";
 
 export const metadata = {
-  title: "שירותי אחות פרטית — דפי SEO מלאים | סיעוד פרימיום",
+  title: "שירותי אחות פרטית — דפי SEO מלאים | סיעודית",
   description:
     "אחות פרטית לבית, לבית חולים, אחרי ניתוח, משמרות לילה, טיפולי IV, פליאטיבי, שיקום והשגחה רפואית. בחרו שירות לקריאת מדריך מלא.",
   alternates: canonicalPath("/services"),

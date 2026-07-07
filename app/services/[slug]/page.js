@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const s = serviceBySlug(slug);
   if (!s) {
-    return { title: "לא נמצא | סיעוד פרימיום", robots: { index: false, follow: false } };
+    return { title: "לא נמצא | סיעודית", robots: { index: false, follow: false } };
   }
   return {
     title: s.metaTitle,

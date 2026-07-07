@@ -5,6 +5,7 @@ import { ArrowLeft, Phone, MessageCircle } from "lucide-react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 import { buildTelHrefClient, buildWhatsappHrefClient } from "../leadCapture/contactHref";
+import { track } from "../../lib/analytics";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -50,12 +51,12 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: easing, delay: 0.05 }}
-          className="mx-auto mt-7 max-w-3xl text-balance text-[42px] font-extrabold leading-[1.04] tracking-tight text-white sm:text-[60px] md:text-[72px]"
+          className="mx-auto mt-7 max-w-3xl text-balance text-[38px] font-extrabold leading-[1.06] tracking-tight text-white sm:text-[54px] md:text-[64px]"
         >
-          אל תחכו לרגע הקריטי.
+          לא בטוחים איזו אחות
           <br />
           <span className="bg-gradient-to-l from-[#5fd1f0] via-white to-[#5fd1f0] bg-clip-text text-transparent">
-            קבלו אחות עכשיו.
+            אתם צריכים?
           </span>
         </motion.h2>
 
@@ -66,8 +67,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.8, ease: easing, delay: 0.15 }}
           className="mx-auto mt-7 max-w-2xl text-pretty text-[18px] leading-[1.7] text-slate-300 sm:text-[19px]"
         >
-          אחות פרטית מוסמכת בבית או בבית חולים. התאמה אישית, מענה תוך דקות
-          וזמינות 24/7 — שקט נפשי שכל משפחה ראויה לו.
+          ספרו לנו בקצרה על המצב, המיקום והמועד הנדרש — ונציג יסייע לכם לבדוק זמינות ולהתאים את השירות.
         </motion.p>
 
         <motion.div
@@ -79,17 +79,13 @@ export default function FinalCTA() {
         >
           <Button
             as="a"
-            href="#contact"
+            href="#matching"
             variant="gradient"
             size="xl"
             className="px-12"
           >
-            <Phone className="h-5 w-5" strokeWidth={2.4} />
-            קבלו אחות עכשיו
+            בדיקת זמינות אחות באזורכם
             <ArrowLeft className="h-5 w-5 transition-transform group-hover/btn:-translate-x-1" />
-          </Button>
-          <Button as="a" href="#services" variant="outline" size="xl">
-            גלו את השירותים
           </Button>
         </motion.div>
 
@@ -100,9 +96,15 @@ export default function FinalCTA() {
           transition={{ duration: 0.8, ease: easing, delay: 0.32 }}
           className="mt-5 flex flex-wrap items-center justify-center gap-3"
         >
-          <Button as="a" href={telHref} variant="outline" size="xl">
+          <Button
+            as="a"
+            href={telHref}
+            variant="outline"
+            size="xl"
+            onClick={() => track("phone_click", { location: "final_cta" })}
+          >
             <Phone className="h-5 w-5" strokeWidth={2.4} />
-            חייגו עכשיו
+            חייגו למענה אנושי 24/7
           </Button>
           <Button
             as="a"
@@ -111,9 +113,10 @@ export default function FinalCTA() {
             rel="noreferrer"
             variant="whatsapp"
             size="xl"
+            onClick={() => track("whatsapp_click", { location: "final_cta" })}
           >
             <MessageCircle className="h-5 w-5" strokeWidth={2.2} />
-            WhatsApp מיידי
+            שלחו הודעה להתאמה אישית
           </Button>
         </motion.div>
       </Container>

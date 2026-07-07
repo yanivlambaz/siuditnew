@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const city = cityBySlug(slug);
   if (!city) {
-    return { title: "לא נמצא | סיעוד פרימיום", robots: { index: false, follow: false } };
+    return { title: "לא נמצא | סיעודית", robots: { index: false, follow: false } };
   }
   const title = `אחות פרטית ב${city.name} | אחות לבית חולים, אחרי ניתוח וסיעוד 24/7`;
   const description = `אחות פרטית ב${city.name}: אחות לבית, אחות לבית חולים, אחות אחרי ניתוח, אחות סיעודית ואחות פרטית לפי שעה. זמינות מיידית, אחיות מוסמכות, מדריך מקומי מלא.`;

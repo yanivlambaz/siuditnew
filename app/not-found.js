@@ -3,7 +3,7 @@ import SiteHeader from "./_components/SiteHeader";
 import SiteFooter from "./_components/SiteFooter";
 
 export const metadata = {
-  title: "העמוד לא נמצא | סיעוד פרימיום",
+  title: "העמוד לא נמצא | סיעודית",
   description: "הכתובת שביקשתם אינה קיימת או הועברה.",
   robots: { index: false, follow: true },
 };

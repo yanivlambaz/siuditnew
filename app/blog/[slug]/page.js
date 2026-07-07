@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = postBySlug(slug);
   if (!post) {
-    return { title: "לא נמצא | סיעוד פרימיום", robots: { index: false, follow: false } };
+    return { title: "לא נמצא | סיעודית", robots: { index: false, follow: false } };
   }
   return {
     title: post.metaTitle,

@@ -8,6 +8,7 @@ import Container from "./ui/Container";
 import Button from "./ui/Button";
 import { buildTelHrefClient, buildWhatsappHrefClient } from "./leadCapture/contactHref";
 import { orgPhoneDisplayIl } from "../lib/orgPhone";
+import { track } from "../lib/analytics";
 
 const NAV_LINKS = [
   { label: "שירותים", href: "/services" },
@@ -89,22 +90,33 @@ export default function SiteHeader() {
         <div className="flex shrink-0 items-center gap-2 sm:gap-2.5 lg:gap-3 2xl:gap-3.5">
           <a
             href={buildTelHrefClient()}
-            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-bold text-[#0a1f44] ring-1 ring-slate-200/90 transition hover:bg-slate-50 md:inline-flex md:px-3.5 xl:px-4"
+            onClick={() => track("phone_click", { location: "header" })}
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-bold text-[#0a1f44] ring-1 ring-slate-200/90 transition hover:bg-slate-50 md:inline-flex md:px-3.5 xl:px-4"
           >
             <Phone className="h-4 w-4 shrink-0 text-[#1f6bff]" strokeWidth={2.4} />
-            <span className="tabular-nums tracking-tight">{orgPhoneDisplayIl()}</span>
+            <span className="flex flex-col items-start leading-tight">
+              <span className="tabular-nums tracking-tight">{orgPhoneDisplayIl()}</span>
+              <span className="text-[10px] font-semibold text-slate-500">מענה אנושי 24/7</span>
+            </span>
           </a>
           <a
             href={buildWhatsappHrefClient()}
             target="_blank"
             rel="noreferrer"
+            onClick={() => track("whatsapp_click", { location: "header" })}
             className="hidden h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-emerald-50 px-3.5 text-[13px] font-bold text-emerald-900 ring-1 ring-emerald-200/90 transition hover:bg-emerald-100/90 lg:inline-flex xl:px-4"
           >
             <MessageCircle className="h-4 w-4 shrink-0 text-[#128C7E]" strokeWidth={2.3} />
             WhatsApp מיידי
           </a>
-          <Button as="a" href="/#contact" variant="primary" size="sm" className="hidden shrink-0 sm:inline-flex">
-            דברו איתנו
+          <Button
+            as="a"
+            href="/#matching"
+            variant="primary"
+            size="sm"
+            className="hidden shrink-0 sm:inline-flex"
+          >
+            בדיקת זמינות
           </Button>
           <button
             type="button"
@@ -139,6 +151,7 @@ export default function SiteHeader() {
             <div className="mt-4 grid gap-2 border-t border-slate-100 pt-4">
               <a
                 href={buildTelHrefClient()}
+                onClick={() => track("phone_click", { location: "header_mobile" })}
                 className="flex items-center justify-center gap-2 rounded-2xl bg-[#0a1f44] py-3.5 text-[15px] font-extrabold text-white shadow-sm transition active:scale-[0.99]"
               >
                 <Phone className="h-5 w-5" strokeWidth={2.3} />
@@ -148,6 +161,7 @@ export default function SiteHeader() {
                 href={buildWhatsappHrefClient()}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => track("whatsapp_click", { location: "header_mobile" })}
                 className="flex items-center justify-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50/95 py-3.5 text-[15px] font-extrabold text-emerald-900 transition active:scale-[0.99]"
               >
                 <MessageCircle className="h-5 w-5 text-[#128C7E]" strokeWidth={2.2} />
@@ -157,13 +171,13 @@ export default function SiteHeader() {
             <div className="pt-4">
               <Button
                 as="a"
-                href="/#contact"
+                href="/#matching"
                 variant="gradient"
                 size="md"
                 className="w-full"
                 onClick={() => setOpen(false)}
               >
-                קבלו אחות עכשיו
+                בדיקת זמינות
               </Button>
             </div>
           </nav>

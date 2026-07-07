@@ -13,10 +13,10 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const h = hospitalBySlug(slug);
   if (!h) {
-    return { title: "לא נמצא | סיעוד פרימיום", robots: { index: false, follow: false } };
+    return { title: "לא נמצא | סיעודית", robots: { index: false, follow: false } };
   }
   return {
-    title: `אחות פרטית ליד ${h.shortName} | סיעוד פרימיום`,
+    title: `אחות פרטית ליד ${h.shortName} | סיעודית`,
     description: `${h.context} ליווי מוסמך ליד ${h.name}, המשכיות בבית והסברים למשפחה.`,
     alternates: canonicalPath(`/hospitals/${h.slug}`),
     openGraph: {

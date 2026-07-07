@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, CalendarCheck } from "lucide-react";
 import { buildTelHrefClient } from "./leadCapture/contactHref";
+import { track } from "../lib/analytics";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -13,7 +14,7 @@ function setStickyCtaHeight(px) {
   else document.documentElement.style.setProperty("--siudit-sticky-cta-h", `${px}px`);
 }
 
-export default function MobileStickyCTA({ whatsappHref }) {
+export default function MobileStickyCTA({ whatsappHref, availabilityHref }) {
   const [show, setShow] = useState(false);
   const barRef = useRef(null);
 
@@ -60,16 +61,28 @@ export default function MobileStickyCTA({ whatsappHref }) {
           <div className="flex items-center gap-2">
             <a
               href={telHref}
+              onClick={() => track("phone_click", { location: "mobile_sticky" })}
               className="flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[#0a1f44] px-4 text-[15px] font-extrabold text-white shadow-[0_12px_28px_-12px_rgba(10,31,68,0.45)] transition active:scale-[0.99]"
             >
               <Phone className="h-[18px] w-[18px] shrink-0 opacity-95" strokeWidth={2.4} />
-              שיחה מיידית
+              {availabilityHref ? "חייגו עכשיו" : "שיחה מיידית"}
             </a>
+            {availabilityHref ? (
+              <a
+                href={availabilityHref}
+                onClick={() => track("availability_click", { location: "mobile_sticky" })}
+                className="flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[length:200%_auto] bg-[linear-gradient(120deg,#1f6bff_0%,#5fd1f0_50%,#1f6bff_100%)] px-4 text-[15px] font-extrabold text-white shadow-[0_12px_28px_-12px_rgba(31,107,255,0.5)] transition active:scale-[0.99]"
+              >
+                <CalendarCheck className="h-[18px] w-[18px] shrink-0" strokeWidth={2.4} />
+                בדיקת זמינות
+              </a>
+            ) : null}
             <a
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp מיידי"
+              onClick={() => track("whatsapp_click", { location: "mobile_sticky" })}
               className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#25D366] text-white shadow-[0_10px_28px_-10px_rgba(37,211,102,0.55)] ring-2 ring-white/35 transition hover:bg-[#1ebe5b] active:scale-[0.97]"
             >
               <MessageCircle className="h-6 w-6" strokeWidth={2.2} aria-hidden />

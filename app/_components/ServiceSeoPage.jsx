@@ -224,7 +224,7 @@ export default function ServiceSeoPage({ service }) {
                   <ul className="mt-4 space-y-2 text-[14px] font-semibold text-slate-600">
                     <li>
                       <Link href="/about" className="text-[#1f6bff] hover:underline">
-                        אודות סיעוד פרימיום
+                        אודות סיעודית
                       </Link>
                     </li>
                     <li>

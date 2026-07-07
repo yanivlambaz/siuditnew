@@ -85,7 +85,7 @@ export function buildAllBlogPosts() {
     const published = new Date(baseDate);
     published.setDate(published.getDate() + i * 11);
     const slug = t.slug;
-    const metaTitle = `${t.title} | מדריך סיעוד פרימיום`;
+    const metaTitle = `${t.title} | מדריך סיעודית`;
     const metaDescription = `מדריך מלא: ${t.kw.join(", ")}. תוכן מקצועי לאחות פרטית, אחות לבית ואחות לבית חולים. שירות בכל הארץ 24/7.`;
     const sections = [
       { h2: "הרקע והצורך", paragraphs: paragraphsForTopic(t, i).slice(0, 2) },

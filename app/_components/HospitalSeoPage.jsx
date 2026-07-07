@@ -84,7 +84,7 @@ export default function HospitalSeoPage({ hospital }) {
               אחות פרטית ליד {hospital.name}
             </h1>
             <p className="mt-6 max-w-3xl text-pretty text-[17px] leading-[1.75] text-slate-600 sm:text-[18px]">
-              {hospital.context} שירות סיעוד פרימיום מתמקד בליווי מוסמך במחלקה ובבית ב{cityName}: ניהול תרופות לפי הוראה,
+              {hospital.context} סיעודית מתמקדת בליווי מוסמך במחלקה ובבית ב{cityName}: ניהול תרופות לפי הוראה,
               ניטור תצפיתי, תמיכה במשפחה והמשכיות אחרי שחרור — בגובה העיניים ובלי הבטחות יתר.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -134,7 +134,7 @@ export default function HospitalSeoPage({ hospital }) {
                 title="סמכות ושקיפות"
                 icon={Shield}
                 links={[
-                  { href: "/about", label: "אודות סיעוד פרימיום" },
+                  { href: "/about", label: "אודות סיעודית" },
                   { href: "/team", label: "תהליכי שיבוץ והצוות המקצועי" },
                   { href: `/cities/${hospital.citySlug}`, label: `דף מלא לאזור ${cityName}` },
                 ]}

@@ -12,11 +12,11 @@ import { publicWhatsappHref } from "../lib/contactUrls";
 import { serializeJsonLd } from "../lib/serializeJsonLd";
 
 export const metadata = {
-  title: "בלוג סיעוד ואחות פרטית — מדריכים מקצועיים | סיעוד פרימיום",
+  title: "בלוג סיעוד ואחות פרטית — מדריכים מקצועיים | סיעודית",
   description:
     "מעל 30 מדריכי SEO: אחות פרטית, אחות לבית חולים, אחרי ניתוח, עלויות, לילה, קשישים, פליאטיבי ועוד. כל המאמרים עם FAQ וקישורים פנימיים.",
   alternates: canonicalPath("/blog"),
-  openGraph: { url: absoluteUrl("/blog"), title: "בלוג סיעוד פרימיום", locale: "he_IL" },
+  openGraph: { url: absoluteUrl("/blog"), title: "בלוג סיעודית", locale: "he_IL" },
 };
 
 export default function BlogIndexPage() {
