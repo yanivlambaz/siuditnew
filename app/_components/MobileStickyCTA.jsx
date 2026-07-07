@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, MessageCircle } from "lucide-react";
 import { buildTelHrefClient } from "./leadCapture/contactHref";
 
 const easing = [0.22, 1, 0.36, 1];
 
+function setStickyCtaHeight(px) {
+  if (typeof document === "undefined") return;
+  if (px <= 0) document.documentElement.style.removeProperty("--siudit-sticky-cta-h");
+  else document.documentElement.style.setProperty("--siudit-sticky-cta-h", `${px}px`);
+}
+
 export default function MobileStickyCTA({ whatsappHref }) {
   const [show, setShow] = useState(false);
+  const barRef = useRef(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -18,6 +25,24 @@ export default function MobileStickyCTA({ whatsappHref }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!show) {
+      setStickyCtaHeight(0);
+      return undefined;
+    }
+    const el = barRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return undefined;
+    const ro = new ResizeObserver(() => {
+      setStickyCtaHeight(Math.ceil(el.getBoundingClientRect().height));
+    });
+    ro.observe(el);
+    setStickyCtaHeight(Math.ceil(el.getBoundingClientRect().height));
+    return () => {
+      ro.disconnect();
+      setStickyCtaHeight(0);
+    };
+  }, [show]);
+
   const telHref = buildTelHrefClient();
 
   return (
@@ -25,6 +50,7 @@ export default function MobileStickyCTA({ whatsappHref }) {
       {show ? (
         <motion.div
           key="mobile-cta"
+          ref={barRef}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}

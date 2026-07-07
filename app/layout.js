@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import "./globals.css";
 import { safePrimarySiteGraphJsonLdString } from "./lib/seo";
+import CookieConsentManager from "./_components/cookies/CookieConsentManager";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TVWCZL96"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N43LNDPH"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
@@ -43,6 +44,39 @@ export default function RootLayout({ children }) {
         </noscript>
         {/* End Google Tag Manager (noscript) */}
 
+        {/* Google Consent Mode v2 defaults — must run before GTM loads */}
+        <Script id="consent-mode-default" strategy="beforeInteractive">
+          {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = window.gtag || gtag;
+gtag('consent','default',{
+  ad_storage:'denied',
+  ad_user_data:'denied',
+  ad_personalization:'denied',
+  analytics_storage:'denied',
+  functionality_storage:'granted',
+  security_storage:'granted',
+  wait_for_update:500
+});
+try{
+  var raw = localStorage.getItem('siudit_cookie_consent_v1');
+  if(raw){
+    var c = JSON.parse(raw);
+    if(c && c.version === 1){
+      var m = c.marketing ? 'granted' : 'denied';
+      gtag('consent','update',{
+        analytics_storage: c.analytics ? 'granted' : 'denied',
+        ad_storage: m,
+        ad_user_data: m,
+        ad_personalization: m
+      });
+    }
+  }
+}catch(e){}
+`}
+        </Script>
+
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
           {`
@@ -50,7 +84,7 @@ export default function RootLayout({ children }) {
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TVWCZL96');
+})(window,document,'script','dataLayer','GTM-N43LNDPH');
 `}
         </Script>
         {/* End Google Tag Manager */}
@@ -60,6 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: safePrimarySiteGraphJsonLdString() }}
         />
         {children}
+        <CookieConsentManager />
       </body>
     </html>
   );

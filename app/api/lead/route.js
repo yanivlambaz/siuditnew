@@ -1,3 +1,5 @@
+import { forwardLeadToGhl } from "../../lib/forwardLeadToGhl";
+
 function normalizeString(value) {
   if (typeof value !== "string") return "";
   return value.trim();
@@ -16,7 +18,16 @@ function isValidPhoneIL(phoneDigits) {
   return true;
 }
 
+function optionalField(body, key) {
+  const value = normalizeString(body?.[key]);
+  return value || undefined;
+}
+
+const WEBHOOK_FAILURE_MESSAGE = "שליחה נכשלה. נסו שוב בעוד רגע.";
+
 export async function POST(request) {
+  console.log("[lead] lead API request received");
+
   let body;
   try {
     body = await request.json();
@@ -45,18 +56,30 @@ export async function POST(request) {
     return Response.json({ ok: false, error: "נא לבחור סוג שירות" }, { status: 400 });
   }
 
-  const lead = {
+  const formType = optionalField(body, "formType") || optionalField(body, "source");
+  const email = optionalField(body, "email");
+  const message = optionalField(body, "message");
+  const page = optionalField(body, "page");
+  const service = optionalField(body, "service");
+
+  const validatedLeadPayload = {
     name,
     phone: phoneDigits,
     city,
     serviceType,
-    createdAt: new Date().toISOString(),
-    userAgent: request.headers.get("user-agent") || "",
-    ip: request.headers.get("x-forwarded-for") || "",
+    ...(formType ? { formType } : {}),
+    ...(email ? { email } : {}),
+    ...(message ? { message } : {}),
+    ...(page ? { page } : {}),
+    ...(service ? { service } : {}),
+    timestamp: new Date().toISOString(),
   };
 
-  console.log("[lead]", lead);
+  const webhookResult = await forwardLeadToGhl(validatedLeadPayload);
+
+  if (!webhookResult.ok) {
+    return Response.json({ ok: false, error: WEBHOOK_FAILURE_MESSAGE }, { status: 503 });
+  }
 
   return Response.json({ ok: true }, { status: 200 });
 }
-

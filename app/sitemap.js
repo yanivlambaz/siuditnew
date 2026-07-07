@@ -18,6 +18,9 @@ export default function sitemap() {
     { url: `${base}/hospitals`, lastModified: last, changeFrequency: "weekly", priority: 0.93 },
     { url: `${base}/about`, lastModified: last, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/team`, lastModified: last, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/privacy-policy`, lastModified: last, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/terms`, lastModified: last, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/accessibility`, lastModified: last, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   hospitals.forEach((h) =>

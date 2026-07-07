@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Loader2, AlertCircle, Sparkles } from "lucide-react";
 import { FloatingInput } from "./ui/Input";
 import Button from "./ui/Button";
+import FormPrivacyNote from "./legal/FormPrivacyNote";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -156,6 +157,8 @@ export default function LeadForm({ defaultCity = "" }) {
             <p className="text-center text-[12.5px] font-medium text-slate-500">
               חוזרים תוך דקות · ללא התחייבות · שיחה דיסקרטית
             </p>
+
+            <FormPrivacyNote />
 
             <AnimatePresence>
               {status.state === "err" ? (

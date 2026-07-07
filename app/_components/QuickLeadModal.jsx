@@ -18,6 +18,7 @@ import { FloatingInput } from "./ui/Input";
 import Button from "./ui/Button";
 import { dispatchSiuditOverlay } from "../lib/siuditUiEvents";
 import { buildTelHrefClient, buildWhatsappHrefClient } from "./leadCapture/contactHref";
+import FormPrivacyNote from "./legal/FormPrivacyNote";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -286,6 +287,8 @@ export default function QuickLeadModal({
                     <p className="pt-1 text-center text-[11.5px] font-medium text-slate-500">
                       <Phone className="ms-0.5 inline h-3 w-3 align-[-1px]" /> חוזרים תוך דקות · ללא התחייבות
                     </p>
+
+                    <FormPrivacyNote />
                   </motion.form>
                 )}
               </AnimatePresence>

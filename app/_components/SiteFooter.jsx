@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, Landmark, MessageCircle } from "lucide-react";
 import BrandLockup from "./BrandLockup";
 import Container from "./ui/Container";
+import CookiePreferencesButton from "./legal/CookiePreferencesButton";
 import { cities } from "../_data/cities";
 import { orgTelHref, orgPhoneDisplayIl } from "../lib/orgPhone";
 import { publicWhatsappHref } from "../lib/contactUrls";
@@ -119,7 +120,23 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 text-[13px] text-slate-400 sm:flex-row sm:items-center">
+        <nav
+          aria-label="קישורים משפטיים"
+          className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/10 pt-8 text-[13px]"
+        >
+          <Link href="/privacy-policy" className="text-slate-300 transition hover:text-white">
+            מדיניות פרטיות
+          </Link>
+          <Link href="/terms" className="text-slate-300 transition hover:text-white">
+            תנאי שימוש
+          </Link>
+          <Link href="/accessibility" className="text-slate-300 transition hover:text-white">
+            הצהרת נגישות
+          </Link>
+          <CookiePreferencesButton className="rounded text-slate-300 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40" />
+        </nav>
+
+        <div className="mt-8 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 text-[13px] text-slate-400 sm:flex-row sm:items-center">
           <div className="max-w-2xl space-y-2">
             <span suppressHydrationWarning>
               © {new Date().getFullYear()} סיעוד פרימיום · {ORG_LEGAL_NAME} · שירותי אחות פרטית בישראל. כל הזכויות שמורות.

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { FloatingInput } from "../ui/Input";
 import Button from "../ui/Button";
+import FormPrivacyNote from "../legal/FormPrivacyNote";
 import { dispatchSiuditOverlay } from "../../lib/siuditUiEvents";
 
 const spring = { type: "spring", damping: 26, stiffness: 320 };
@@ -302,6 +303,7 @@ export default function PremiumLeadDialog({
                               {status.message}
                             </div>
                           ) : null}
+                          <FormPrivacyNote />
                         </form>
                         </motion.div>
                       </motion.div>
