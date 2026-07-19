@@ -26,4 +26,4 @@ export const ORG_WHATSAPP_HREF = "https://wa.me/972533671855";
 export const ORG_PLACEMENT_LICENSE_NO = "3203";
 
 export const ORG_PLACEMENT_LICENSE_URL =
-  "https://www.gov.il/he/Departments/DynamicCollectors/private-chambers?skip=0&companyname=%D7%A1%D7%A7%D7%90%D7%99%20%D7%A4%D7%99%D7%A4%D7%9C%20%D7%91%D7%A2%22%D7%9D";
+  "https://www.gov.il/he/Departments/DynamicCollectors/contractor-database?skip=0&companyname=%D7%A1%D7%A7%D7%90%D7%99%20%D7%A4%D7%99%D7%A4%D7%9C";
