@@ -19,6 +19,7 @@ import Button from "./ui/Button";
 import { dispatchSiuditOverlay } from "../lib/siuditUiEvents";
 import { buildTelHrefClient, buildWhatsappHrefClient } from "./leadCapture/contactHref";
 import FormPrivacyNote from "./legal/FormPrivacyNote";
+import { submitLead } from "../lib/submitLead";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -77,11 +78,7 @@ export default function QuickLeadModal({
 
     setStatus({ state: "loading" });
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source: "popup" }),
-      });
+      const res = await submitLead({ ...data, source: "popup" });
       const json = await res.json().catch(() => null);
       if (!res.ok) throw new Error(json?.error || "שליחה נכשלה. נסו שוב.");
       setStatus({ state: "ok" });

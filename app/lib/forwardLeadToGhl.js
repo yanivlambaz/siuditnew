@@ -1,4 +1,5 @@
 import { LEAD_SOURCE } from "./leadConfig";
+import { flattenAttributionForWebhook, hasAnyAttributionValue } from "./attribution";
 
 function isValidWebhookUrl(value) {
   try {
@@ -31,9 +32,23 @@ export async function forwardLeadToGhl(validatedLeadPayload) {
 
   console.log("[lead] webhook configuration present");
 
+  const { attribution, ...leadFields } = validatedLeadPayload;
+  const flatAttribution =
+    attribution && typeof attribution === "object"
+      ? flattenAttributionForWebhook(/** @type {Record<string, string | null>} */ (attribution))
+      : {};
+
   const webhookPayload = {
-    ...validatedLeadPayload,
+    ...leadFields,
     source: LEAD_SOURCE,
+    ...(hasAnyAttributionValue(
+      /** @type {Record<string, string | null>} */ (attribution || {}),
+    )
+      ? {
+          attribution: flatAttribution,
+          ...flatAttribution,
+        }
+      : {}),
   };
 
   console.log("[lead] webhook request attempted");

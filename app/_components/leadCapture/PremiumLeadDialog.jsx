@@ -17,6 +17,7 @@ import { FloatingInput } from "../ui/Input";
 import Button from "../ui/Button";
 import FormPrivacyNote from "../legal/FormPrivacyNote";
 import { dispatchSiuditOverlay } from "../../lib/siuditUiEvents";
+import { submitLead } from "../../lib/submitLead";
 
 const spring = { type: "spring", damping: 26, stiffness: 320 };
 const ease = [0.22, 1, 0.36, 1];
@@ -109,13 +110,9 @@ export default function PremiumLeadDialog({
     }
     setStatus({ state: "loading" });
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          source: leadMeta.source || `premium-${kind}`,
-        }),
+      const res = await submitLead({
+        ...data,
+        source: leadMeta.source || `premium-${kind}`,
       });
       const json = await res.json().catch(() => null);
       if (!res.ok) throw new Error(json?.error || "שליחה נכשלה. נסו שוב.");

@@ -60,7 +60,7 @@ export default function Hero({ whatsappHref, telHref }) {
             </p>
 
             <p className="animate-rise-3 mt-4 text-[13.5px] font-bold text-[#0a1f44]/80 sm:text-[14.5px]">
-              מענה אנושי מהיר • התאמה אישית • שירות בפריסה ארצית
+              מענה אנושי מהיר • התאמה אישית • שירות בפריסה ארצית. מינימום 8 שעות למשמרת
             </p>
 
             <ul className="animate-rise-3 mt-7 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">

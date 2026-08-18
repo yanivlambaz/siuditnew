@@ -6,6 +6,7 @@ import { ArrowLeft, Loader2, AlertCircle, Sparkles } from "lucide-react";
 import { FloatingInput } from "./ui/Input";
 import Button from "./ui/Button";
 import FormPrivacyNote from "./legal/FormPrivacyNote";
+import { submitLead } from "../lib/submitLead";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -28,11 +29,7 @@ export default function LeadForm({ defaultCity = "" }) {
 
     setStatus({ state: "loading" });
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const res = await submitLead(data);
       const json = await res.json().catch(() => null);
       if (!res.ok) throw new Error(json?.error || "שליחה נכשלה. נסו שוב בעוד רגע.");
       form.reset();

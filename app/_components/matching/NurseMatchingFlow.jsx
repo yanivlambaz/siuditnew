@@ -28,6 +28,7 @@ import Container from "../ui/Container";
 import { FloatingInput } from "../ui/Input";
 import Button from "../ui/Button";
 import { track } from "../../lib/analytics";
+import { submitLead } from "../../lib/submitLead";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -128,11 +129,7 @@ export default function NurseMatchingFlow() {
     };
 
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await submitLead(payload);
       const json = await res.json().catch(() => null);
       if (!res.ok) throw new Error(json?.error || "שליחה נכשלה. נסו שוב בעוד רגע.");
       track("matching_form_submit", { location: answers.location, help: answers.help });

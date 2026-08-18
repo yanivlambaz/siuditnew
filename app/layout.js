@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { Heebo } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
 import { safePrimarySiteGraphJsonLdString } from "./lib/seo";
 import CookieConsentManager from "./_components/cookies/CookieConsentManager";
+import AttributionCapture from "./_components/AttributionCapture";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -94,6 +96,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: safePrimarySiteGraphJsonLdString() }}
         />
         {children}
+        <Suspense fallback={null}>
+          <AttributionCapture />
+        </Suspense>
         <CookieConsentManager />
       </body>
     </html>

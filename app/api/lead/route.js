@@ -1,4 +1,5 @@
 import { forwardLeadToGhl } from "../../lib/forwardLeadToGhl";
+import { hasAnyAttributionValue, resolveAttributionFromRequest } from "../../lib/attribution";
 
 function normalizeString(value) {
   if (typeof value !== "string") return "";
@@ -66,6 +67,8 @@ export async function POST(request) {
   const careLocation = optionalField(body, "careLocation");
   const urgency = optionalField(body, "urgency");
 
+  const attribution = resolveAttributionFromRequest(body, request.headers.get("cookie"));
+
   const validatedLeadPayload = {
     name,
     phone: phoneDigits,
@@ -78,6 +81,7 @@ export async function POST(request) {
     ...(service ? { service } : {}),
     ...(careLocation ? { careLocation } : {}),
     ...(urgency ? { urgency } : {}),
+    ...(hasAnyAttributionValue(attribution) ? { attribution } : {}),
     timestamp: new Date().toISOString(),
   };
 
