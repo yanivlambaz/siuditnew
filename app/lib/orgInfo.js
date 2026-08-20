@@ -22,6 +22,9 @@ export const ORG_PHONE_E164 = "+972723940350";
 /** קישור וואטסאפ קנוני (ניתן לעקוף ב־NEXT_PUBLIC_WHATSAPP_HREF / NEXT_PUBLIC_WHATSAPP_PHONE) */
 export const ORG_WHATSAPP_HREF = "https://wa.me/972533671855";
 
+/** הודעה מוכנה לפתיחת WhatsApp — מצורפת אוטומטית לכל קישור wa.me */
+export const ORG_WHATSAPP_PREFILL_MESSAGE = "אשמח לקבל פרטים לגבי מטפלת/אחות פרטית";
+
 /** רישיון לשכה פרטית (השמה) — משרד העבודה */
 export const ORG_PLACEMENT_LICENSE_NO = "3203";
 
