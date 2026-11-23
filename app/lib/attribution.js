@@ -11,6 +11,12 @@ export const ATTRIBUTION_PARAM_KEYS = [
   "network",
   "device",
   "gclid",
+  "utm_id",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gbraid",
+  "wbraid",
 ];
 
 export const ATTRIBUTION_STORAGE_KEY = "siudit:ads:attribution";
@@ -20,7 +26,9 @@ const PLACEHOLDER_PATTERN = /^\{[a-z0-9_]+\}$/i;
 
 const MAX_LENGTH = {
   keyword: 500,
-  gclid: 200,
+  gclid: 500,
+  gbraid: 500,
+  wbraid: 500,
   default: 120,
 };
 
@@ -48,24 +56,11 @@ export function isPlaceholderValue(value) {
 export function normalizeAttributionValue(key, raw) {
   if (raw == null) return null;
 
-  let value = String(raw).trim();
-  if (!value || isPlaceholderValue(value)) return null;
-
-  if (/%[0-9A-Fa-f]{2}/.test(value)) {
-    try {
-      value = decodeURIComponent(value);
-    } catch {
-      /* keep raw value when decoding fails */
-    }
-  }
-
-  value = value.trim();
+  const value = typeof raw === "string" ? raw.trim() : "";
   if (!value || isPlaceholderValue(value)) return null;
 
   const maxLen = MAX_LENGTH[key] ?? MAX_LENGTH.default;
-  if (value.length > maxLen) value = value.slice(0, maxLen);
-
-  return value || null;
+  return value.slice(0, maxLen);
 }
 
 /**
