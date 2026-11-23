@@ -4,6 +4,7 @@ import {
   ATTRIBUTION_COOKIE_NAME,
   ATTRIBUTION_STORAGE_KEY,
   emptyAttribution,
+  flattenAttributionForWebhook,
   hasAnyAttributionValue,
   mergeAttribution,
   parseAttributionFromSearchParams,
@@ -76,6 +77,7 @@ export function captureAttributionFromUrl(search) {
 
   const merged = mergeAttribution(stored, incoming);
   writeStoredAttribution(merged);
+  writeTouches(stored, incoming);
 
   track("google_ads_attribution_captured", {
     has_gclid: !!merged.gclid,
@@ -95,5 +97,29 @@ export function captureAttributionFromUrl(search) {
 export function appendAttributionToLeadPayload(payload) {
   const attribution = readStoredAttribution();
   if (!hasAnyAttributionValue(attribution)) return payload;
-  return { ...payload, attribution };
+  return { ...payload, attribution, ...readTouches() };
+}
+
+const TOUCH_STORAGE_KEY = `${ATTRIBUTION_STORAGE_KEY}:touches`;
+
+function readTouches() {
+  try {
+    return JSON.parse(sessionStorage.getItem(TOUCH_STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function writeTouches(stored, incoming) {
+  const previous = readTouches();
+  const first = previous.firstAttribution ??
+    flattenAttributionForWebhook(hasAnyAttributionValue(stored) ? stored : incoming);
+  try {
+    sessionStorage.setItem(TOUCH_STORAGE_KEY, JSON.stringify({
+      firstAttribution: first,
+      lastAttribution: flattenAttributionForWebhook(incoming),
+    }));
+  } catch {
+    // Existing attribution can still be recovered from the cookie.
+  }
 }

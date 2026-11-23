@@ -32,15 +32,20 @@ export async function forwardLeadToGhl(validatedLeadPayload) {
 
   console.log("[lead] webhook configuration present");
 
-  const { attribution, ...leadFields } = validatedLeadPayload;
+  const { attribution, firstAttribution, lastAttribution, ...leadFields } = validatedLeadPayload;
   const flatAttribution =
     attribution && typeof attribution === "object"
       ? flattenAttributionForWebhook(/** @type {Record<string, string | null>} */ (attribution))
       : {};
 
+  const first = flattenAttributionForWebhook(firstAttribution ?? {});
+  const last = flattenAttributionForWebhook(lastAttribution ?? {});
   const webhookPayload = {
     ...leadFields,
     source: LEAD_SOURCE,
+    attribution_website: LEAD_SOURCE,
+    ...(Object.keys(first).length ? { attribution_first_touch_text: "Google Ads | " + JSON.stringify(first) } : {}),
+    ...(Object.keys(last).length ? { attribution_last_touch_text: "Google Ads | " + JSON.stringify(last) } : {}),
     ...(hasAnyAttributionValue(
       /** @type {Record<string, string | null>} */ (attribution || {}),
     )

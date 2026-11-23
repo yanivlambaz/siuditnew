@@ -1,5 +1,5 @@
 import { forwardLeadToGhl } from "../../lib/forwardLeadToGhl";
-import { hasAnyAttributionValue, resolveAttributionFromRequest } from "../../lib/attribution";
+import { hasAnyAttributionValue, resolveAttributionFromRequest, sanitizeAttributionObject } from "../../lib/attribution";
 
 function normalizeString(value) {
   if (typeof value !== "string") return "";
@@ -82,6 +82,8 @@ export async function POST(request) {
     ...(careLocation ? { careLocation } : {}),
     ...(urgency ? { urgency } : {}),
     ...(hasAnyAttributionValue(attribution) ? { attribution } : {}),
+    firstAttribution: sanitizeAttributionObject(body?.firstAttribution),
+    lastAttribution: sanitizeAttributionObject(body?.lastAttribution),
     timestamp: new Date().toISOString(),
   };
 
