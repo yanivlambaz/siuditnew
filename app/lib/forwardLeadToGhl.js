@@ -44,8 +44,8 @@ export async function forwardLeadToGhl(validatedLeadPayload) {
     ...leadFields,
     source: LEAD_SOURCE,
     attribution_website: LEAD_SOURCE,
-    ...(Object.keys(first).length ? { attribution_first_touch: JSON.stringify(first) } : {}),
-    ...(Object.keys(last).length ? { attribution_last_touch: JSON.stringify(last) } : {}),
+    ...(Object.keys(first).length ? { attribution_first_touch_text: "Google Ads | " + JSON.stringify(first) } : {}),
+    ...(Object.keys(last).length ? { attribution_last_touch_text: "Google Ads | " + JSON.stringify(last) } : {}),
     ...(hasAnyAttributionValue(
       /** @type {Record<string, string | null>} */ (attribution || {}),
     )
